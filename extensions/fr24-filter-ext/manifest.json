@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Plane Spotter Filter",
+  "version": "1.0",
+  "description": "Filtre automatiquement les vols intéressants sur Flightradar24",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.flightradar24.com/*",
+        "https://www.airnavradar.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["filters.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

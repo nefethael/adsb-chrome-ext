@@ -1,0 +1,20 @@
+{
+  "name": "ADSB show rings and stuff",
+  "description": "Exécuter automatiquement du JS sur certains sites",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["scripting"],
+  "content_scripts": [
+    {
+      "matches": ["https://globe.adsbexchange.com/*"],
+      "js": ["script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["https://globe.adsbexchange.com/*"]
+    }
+  ]
+}
