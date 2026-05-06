@@ -12,12 +12,12 @@ if (typeof drawSiteCircle === "function") {
 // ------------------------------
 // Fonction principale
 // ------------------------------
-async function loadSIDSTAR() {
+async function loadSIDSTAR(airport, rwy, visi) {
 
   try {
 
-    const url_sid = "https://raw.githubusercontent.com/nefethael/adsb-chrome-ext/main/data/LFBD_sid_05.geojson";
-	const url_star = "https://raw.githubusercontent.com/nefethael/adsb-chrome-ext/main/data/LFBD_star_05.geojson";
+    const url_sid = `https://raw.githubusercontent.com/nefethael/adsb-chrome-ext/main/data/${airport}_sid_${rwy}.geojson`;
+	const url_star = `https://raw.githubusercontent.com/nefethael/adsb-chrome-ext/main/data/${airport}_star_${rwy}.geojson`;
 
     const geojson_sid = await fetch(url_sid).then(r => r.json());
 	const geojson_star = await fetch(url_star).then(r => r.json());
@@ -40,10 +40,10 @@ async function loadSIDSTAR() {
 
     const lineLayer_sid = new ol.layer.Vector({
         type: "overlay",
-        title: "SID_23",
-        name: "SID_23",
+        title: `SID_${rwy}`,
+        name: `SID_${rwy}`,
         zIndex: 99,
-        visible: 1,				
+        visible: visi,				
       source: new ol.source.Vector({
         features: lineFeatures_sid
       }),
@@ -59,10 +59,10 @@ async function loadSIDSTAR() {
 	
     const lineLayer_star = new ol.layer.Vector({
         type: "overlay",
-        title: "STAR_23",
-        name: "STAR_23",
+        title: `STAR_${rwy}`,
+        name: `STAR_${rwy}`,
         zIndex: 99,
-        visible: 1,				
+        visible: visi,				
       source: new ol.source.Vector({
         features: lineFeatures_star
       }),
@@ -140,10 +140,10 @@ async function loadSIDSTAR() {
     // ------------------------------
 	const diamondLayer = new ol.layer.Vector({
         type: "overlay",
-        title: "PTS",
-        name: "sidstarpts",
+        title: `P1_${rwy}`,
+        name: `P1_${rwy}`,
         zIndex: 99,
-        visible: 1,		
+        visible: visi,		
 	  source: new ol.source.Vector({
 		features: pointFeatures
 	  }),
@@ -166,10 +166,10 @@ async function loadSIDSTAR() {
 
 	const labelLayer = new ol.layer.Vector({
         type: "overlay",
-        title: "PTS2",
-        name: "sidstarlabel",
+        title: `P2_${rwy}`,
+        name: `P2_${rwy}`,
         zIndex: 99,
-        visible: 1,		
+        visible: visi,		
 	  source: new ol.source.Vector({
 		features: pointFeatures
 	  }),
@@ -201,8 +201,8 @@ async function loadSIDSTAR() {
     if (typeof layers === "object") {
 
       const group = new ol.layer.Group({
-        name: "custom_vpr",
-        title: "Custom VPR",
+        title: `${airport}_${rwy}`,
+        name: `${airport}_${rwy}`,
         layers: [lineLayer_sid, lineLayer_star , labelLayer, diamondLayer]
       });
 
@@ -245,6 +245,9 @@ function waitForMap() {
 
   console.log("[SIDSTAR] OpenLayers prêt");
 
-  loadSIDSTAR();
+  loadSIDSTAR("LFBD", "23", 1);
+  loadSIDSTAR("LFBD", "29", !1);
+  loadSIDSTAR("LFBD", "11", !1);
+  loadSIDSTAR("LFBD", "05", !1);
 
 })();
