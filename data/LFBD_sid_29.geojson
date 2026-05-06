@@ -1,0 +1,112 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ROYAN 6R",
+        "points": [
+          "BD923",
+          "BD927",
+          "ROYAN"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.8210555555555555,
+            44.93230555555555
+          ],
+          [
+            -0.8290277777777778,
+            45.11694444444444
+          ],
+          [
+            -1.0366666666666668,
+            45.666666666666664
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CNA 6R",
+        "points": [
+          "BD923",
+          "ROVFU",
+          "CNA"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.8210555555555555,
+            44.93230555555555
+          ],
+          [
+            -0.55,
+            45.1475
+          ],
+          [
+            -0.31163888888888885,
+            45.659555555555556
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "OBLOC 6R",
+        "points": [
+          "BD929",
+          "BD935",
+          "OBLOC"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.7265555555555555,
+            44.69680555555555
+          ],
+          [
+            -0.5663888888888889,
+            44.69152777777777
+          ],
+          [
+            -0.15291666666666667,
+            44.67680555555555
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "VAVIX 6R",
+        "points": [
+          "BD929",
+          "VAVIX"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.7265555555555555,
+            44.69680555555555
+          ],
+          [
+            -0.6940833333333334,
+            44.27777777777778
+          ]
+        ]
+      }
+    }
+  ]
+}

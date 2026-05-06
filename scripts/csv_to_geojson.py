@@ -122,8 +122,8 @@ def build_geojson(procedures, points):
 # 5. MAIN
 # ----------------------------
 points_file = "../inputs/LFBD_points.txt"
-csv_file = "../inputs/LFBD_sidstar_11.txt"
-output_file = "../data/LFBD_sidstar_11.geojson"
+csv_file = "../inputs/LFBD_sidstar_29.txt"
+output_file = "../data/LFBD_sidstar_29.geojson"
 
 points = load_points(points_file)
 procedures = parse_procedure(csv_file)

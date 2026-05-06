@@ -2,8 +2,8 @@ import pdfplumber
 import csv
 import re
 
-pdf_path = "../inputs/AD_2_LFBD_DATA_SID_RWY23_RNAV_CODE_01.pdf"
-csv_path = "AD_2_LFBD_DATA_SID_RWY23_RNAV_CODE_01.csv"
+pdf_path = "../inputs/AD_2_LFBD_DATA_SID_RWY29_RNAV_CODE_01.pdf"
+csv_path = "AD_2_LFBD_DATA_SID_RWY29_RNAV_CODE_01.csv"
 
 rows = []
 

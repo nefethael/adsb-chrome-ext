@@ -16,8 +16,8 @@ async function loadSIDSTAR() {
 
   try {
 
-    const url_sid = "https://raw.githubusercontent.com/nefethael/adsb-chrome-ext/main/data/LFBD_sid_23.geojson";
-	const url_star = "https://raw.githubusercontent.com/nefethael/adsb-chrome-ext/main/data/LFBD_star_23.geojson";
+    const url_sid = "https://raw.githubusercontent.com/nefethael/adsb-chrome-ext/main/data/LFBD_sid_05.geojson";
+	const url_star = "https://raw.githubusercontent.com/nefethael/adsb-chrome-ext/main/data/LFBD_star_05.geojson";
 
     const geojson_sid = await fetch(url_sid).then(r => r.json());
 	const geojson_star = await fetch(url_star).then(r => r.json());
