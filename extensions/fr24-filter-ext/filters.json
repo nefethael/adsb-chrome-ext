@@ -10,7 +10,8 @@
 ],
 "common_shortcraft": [
 "7S7", "295", "321", "73H", "BEH", "32A", "32B", "32R", "738", "320", "319", "CRJ", "CRK", "7M8", "E90", "32N", "A319", "B738", "32S", "CRJX", "E70", "318", "E190", "A320", "E170", "73W", "CR9",
-"EMJ", "E7W", "32Q", "7M9", "733", "736", "B737", "76X", "SW3", "H25B", "73J", "H25C","A21N", "A20N"
+"EMJ", "E7W", "32Q", "7M9", "733", "736", "B737", "76X", "SW3", "H25B", "73J", "H25C","A21N", "A20N", "E290", "B739", "E195", "E55P",
+"B38M"
 ],
 "common_airline": [
 "easyJet (Austria Livery)", "easyJet (Berlin Livery)", "Volotea (10 Years Livery)", "Air France", "KLM", "Ryanair", "easyJet", "Lufthansa", "Vueling", "Volotea", "Chalair Aviation",
@@ -18,7 +19,8 @@
 "Ryanair UK", "Transavia", "Tunisair", "Air Arabia Maroc", "Swiss", "Transavia France", "Chalair Aviation","Nouvelair Tunisie","Airlec Air Espace",
 "easyJet (NEO Livery)", "GlobeAir", "Air Dolomiti", "Turkish Airlines", "Jetfly Aviation", "Flexjet", "Nouvelair", "VistaJet", "NetJets Europe", "Air Arabia", "VallJet", "Astonjet",
 "Wizz Air", "Wizz Air Malta",
-"Volotea Airlines", "easyJet Europe Airline", "KLM Royal Dutch Airlines", "easyJet Airline", "Vueling Airlines", "Easyjet Switzerland", "Iberia operated by Air Nostrum", "Royal Air Moroc", "Tunis Air", "Airhub Airlines Ltd (Malta)"
+"Volotea Airlines", "easyJet Europe Airline", "KLM Royal Dutch Airlines", "easyJet Airline", "Vueling Airlines", "Easyjet Switzerland", "Iberia operated by Air Nostrum", "Royal Air Moroc", "Tunis Air", "Airhub Airlines Ltd (Malta)",
+"DAH", "VOE", "EZS", "EJU", "AFR", "Swiss International Air Lines"
 
 ],
 "cargo_airline": [

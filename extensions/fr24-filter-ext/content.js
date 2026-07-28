@@ -21,7 +21,7 @@ function isAirNavRadar() {
 // ==========================
 // PARSE DOM
 // ==========================
-function parseRowAirNav(row) {
+function parseRowAirNavOld(row) {
     const getText = (selector) =>
         row.querySelector(selector)?.innerText.replace(/\s+/g, " ").trim();
 
@@ -31,6 +31,47 @@ function parseRowAirNav(row) {
         origin: getText("#arrival"),
         airline: getText("#airline"),
         aircraft: getText("#aircraft")
+    };
+}
+
+function clean(text) {
+    return text?.replace(/\s+/g, " ").trim() ?? "";
+}
+
+function parseRowAirNav(row) {
+
+    const get = selector => row.querySelector(selector);
+
+    const timeText = clean(
+        get('[title*="Central European"]')?.textContent
+    );
+
+    const aircraft_type = clean(
+        get(".aircraft-view a[href*='/data/aircraft-models/']")?.textContent
+    );
+
+    const registration = clean(
+        get(".aircraft-view a[href*='/data/registration/']")?.textContent
+    );
+
+    return {
+        date: clean(row.querySelector(".padded-cell")?.textContent),
+
+        time: timeText.substring(0,5),
+
+        flightNumber: clean(
+            get('a[href*="/data/flights/"]')?.textContent
+        ),
+
+        airport: clean(
+            get(".arrival-view a")?.textContent
+        ),
+
+        airline: clean(
+            get(".airline-view a")?.textContent
+        ),
+
+        aircraft: `${aircraft_type} (${registration})`
     };
 }
 
@@ -170,11 +211,15 @@ function applyStyle(row, type) {
 async function runFilter() {
     const filters = await loadFilters();
 
+
+
 	const rows = isAirNavRadar()
-		? document.querySelectorAll("table tbody tr")
+		? document.querySelectorAll(".canflxb")
 		: document.querySelectorAll("tr[ng-repeat*='arrivals'], tr[ng-repeat*='departures']");
 
+
 	rows.forEach(row => {
+		
 		if (row.dataset.filtered) return;
 
 		const data = isAirNavRadar()
