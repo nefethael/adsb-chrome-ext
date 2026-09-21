@@ -1,8 +1,8 @@
 // ==========================
 // CONFIG
 // ==========================
-const NIGHT_START = 22;
-const NIGHT_END = 6;
+const NIGHT_START = 21;
+const NIGHT_END = 7;
 
 
 // ==========================
@@ -16,6 +16,42 @@ async function loadFilters() {
 
 function isAirNavRadar() {
     return window.location.hostname.includes("airnavradar.com");
+}
+
+
+// ==========================
+// LOAD FR24 JSON
+// ==========================
+function loadFR24Flights() {
+
+    let res = new Map();
+
+    const app = document.getElementById("app");
+    if (!app)
+        return res;
+
+    const page = JSON.parse(app.dataset.page);
+
+    page.props.flights.forEach(flight => {
+        res.set(flight.id, flight);
+    });
+
+    return res;
+}
+
+function formatTime(timestamp) {
+
+    if (!timestamp)
+        return "";
+
+    const date = new Date(timestamp * 1000);
+
+    return date.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+    });
+
 }
 
 // ==========================
@@ -75,7 +111,7 @@ function parseRowAirNav(row) {
     };
 }
 
-function parseRow(row) {
+function parseRowFR24Old(row) {
     const tds = row.querySelectorAll("td");
 
     return {
@@ -85,6 +121,28 @@ function parseRow(row) {
         airline: row.querySelector(".cell-airline a")?.innerText.trim(),
         aircraft: tds[4]?.innerText.trim()
     };
+}
+
+function parseRow(row, flights) {
+
+    const flight = flights.get(row.dataset.flightId);
+
+    if (!flight)
+        return null;
+
+    return {
+
+        time: formatTime(flight.estimatedTime ?? flight.scheduledTime),
+        flightNumber: flight.flightNumber,
+        origin: `${flight.endpoint.city} (${flight.endpoint.iata})`,
+        airline: flight.airline?.name ?? "",
+        aircraft:
+            flight.aircraft?.registration
+                ? `${flight.aircraft.type} (${flight.aircraft.registration})`
+                : flight.aircraft?.type ?? ""
+
+    };
+
 }
 
 
@@ -168,7 +226,7 @@ function isNotInteresting(data, filters) {
 
     if (isCargoAirline && (isCommonAircraft || isShortAircraft || isCargoAircraft)) {
         if (isNightFlight(time)) {
-            console.log("night cargo -> boring");
+            console.log("night cargo -> boring ", time);
             return true;
         }
 
@@ -211,11 +269,11 @@ function applyStyle(row, type) {
 async function runFilter() {
     const filters = await loadFilters();
 
-
+	const flights = loadFR24Flights();
 
 	const rows = isAirNavRadar()
 		? document.querySelectorAll(".canflxb")
-		: document.querySelectorAll("tr[ng-repeat*='arrivals'], tr[ng-repeat*='departures']");
+		: document.querySelectorAll("[data-flight-id]");
 
 
 	rows.forEach(row => {
@@ -224,7 +282,7 @@ async function runFilter() {
 
 		const data = isAirNavRadar()
 			? parseRowAirNav(row)
-			: parseRow(row);
+			: parseRow(row, flights);
 
 		if (!data) return;
 
